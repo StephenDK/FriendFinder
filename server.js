@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 var app = express();
 
 // Set port
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 // set up middleware
 app.use(bodyParser.json());
