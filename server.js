@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // require api routes
-
+require("./app/routing/apiRoutes")(application);
+require("./app/routing/htmlRoutes")(application);
 
 
 // Listener
