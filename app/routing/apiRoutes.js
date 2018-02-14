@@ -17,7 +17,46 @@ module.exports = function(application) {
         // object to hold the best match
         var bestMatch = {
             name: "",
-            photo: ""
+            photo: "",
+            friendDifference: Infinity
         }
-    })
-}
+
+        // parse users POST survey
+        var userData = req.body;
+        var userScores = userData.scores;
+
+        // variable used to calculate total score
+        var totalDifference;
+
+        // loop through all the friends
+        for (var i = 0; i < friends.length; i++) {
+            var currentFriend = friends[i];
+            totalDifference = 0;
+
+            // test and debugging
+            console.log(currentFriend.name);
+
+            // Loop through the scores of each friend
+            for (var j = 0; j < currentFriend.scores.length; j++) {
+                var currentFriendScore = currentFriend.scores[j];
+                var currentUserScore = userScores[j];
+
+                // Calculate the difference
+                totalDifference += Math.abs(parseInt(currentUserScore) - parseInt(currentFriendScore));
+            }
+
+            if (totalDifference <= bestMatch.friendDifference) {
+                // reset bestMatch to new friend
+                bestMatch.name = currentFriend.name;
+                bestMatch.photo = currentFriend.photo;
+                bestMatch.friendDifference = totalDifference;
+            }
+        }
+
+        // save users data
+        friends.push(userData);
+
+        // return json of users best match
+        res.json(bestMatch);
+    });
+};
