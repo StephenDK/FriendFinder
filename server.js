@@ -1,30 +1,25 @@
-// Dependencies 
-// 
 
-//Express 
- var express = require("express");
-//  bodyParser
+// DEPENDENCIES
+var express = require("express");
 var bodyParser = require("body-parser");
 
-// Create an instance of express
+// configure express
 var app = express();
 
-// Set initial port
+// Set port
 var PORT = process.env.PORT || 3000;
 
-// Set up body parser
+// set up middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
 
 
-// require api routes
-require("./app/routing/apiRoutes")(application);
-require("./app/routing/htmlRoutes")(application);
-
+// Routes
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // Listener
 app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
-})
-
-
+  console.log("App listening on PORT: " + PORT);
+});

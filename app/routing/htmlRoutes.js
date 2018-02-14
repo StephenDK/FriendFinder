@@ -1,16 +1,20 @@
-// Dependencies
-// 
+
+// DEPENDENCIES
+
 var path = require("path");
 
-// Routing
-// 
-module.exports = function(application) {
+// Routes
 
-    // Path redirects
-    app.get("/survey", function(req, res) {
-        res.sendFile(path.join(__dirname, "/../public/survey.html"));
+module.exports = function(app) {
 
-    });
+// route for the survey
+  app.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "/../public/survey.html"));
+  });
 
-    
+//   if theer is no matching route go to home page
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "/../public/home.html"));
+  });
+
 };
