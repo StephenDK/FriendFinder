@@ -147,8 +147,39 @@
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
+        <br>
+        <br>
 
+        <button type="submit" class="btn btn-primary" id="submit">
+            Submit</button>
         
     </div>
+
+    <script type="text/javascript">
+    
+        // Capture form inputs
+        $("#submit").on("click", function(event) {
+            event.preventDefault();
+
+            function validateForm() {
+                var isValid = true;
+                $(".form-control").each(function() {
+                    if ($(this).val() === "") {
+                        isValdi = false;
+                    }
+                });
+
+                $(".chosen-select").each(function() {
+                    if ($(this) .val() === "") {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+        })
+
+    </script>
+    
+
 </body>
 </html>
