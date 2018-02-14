@@ -28,8 +28,6 @@ module.exports = function(app) {
       var currentFriend = friends[i];
       totalDifference = 0;
 
-      console.log(currentFriend.name);
-
       // loop through all the scores of each friend
       for (var j = 0; j < currentFriend.scores.length; j++) {
         var currentFriendScore = currentFriend.scores[j];
